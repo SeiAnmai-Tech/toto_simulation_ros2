@@ -4,19 +4,19 @@
 
 2. Add this lines in your `.bashrc` file:
 
-. source /opt/ros/foxy/setup.bash
+  a. source /opt/ros/foxy/setup.bash
   
-  source ~/sim_toto2/install/setup.bash
+  b. source ~/sim_toto2/install/setup.bash
   
-  export ROS_DOMAIN_ID=0 #TURTLEBOT3 - 30
+  c. export ROS_DOMAIN_ID=0 
   
-  export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sumukh/sim_toto2/src/toto2_description/models/
+  d. export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sumukh/sim_toto2/src/toto2_description/models/
   
-  source /usr/share/gazebo/setup.sh
+  e. source /usr/share/gazebo/setup.sh
   
-  source /usr/share/colcon_cd/function/colcon_cd.sh
+  f. source /usr/share/colcon_cd/function/colcon_cd.sh
   
-  export _colcon_cd_root=~/sim_toto2
+  g. export _colcon_cd_root=~/sim_toto2
   
 **Note:**__ Change `sim_toto2` with name of your workspace & change `sumukh` with username in your PC.
 
