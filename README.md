@@ -1,10 +1,10 @@
 # toto_simulation_ros2
 
-Install the repository in the `src` folder of your ros2 workspace.
+1. Install the repository in the `src` folder of your ros2 workspace.
 
-Add this lines in your `.bashrc` file:
+2. Add this lines in your `.bashrc` file:
 
-  `source /opt/ros/foxy/setup.bash
+  source /opt/ros/foxy/setup.bash
   
   source ~/sim_toto2/install/setup.bash
   
@@ -16,10 +16,10 @@ Add this lines in your `.bashrc` file:
   
   source /usr/share/colcon_cd/function/colcon_cd.sh
   
-  export _colcon_cd_root=~/sim_toto2`
+  export _colcon_cd_root=~/sim_toto2
   
-Change `sim_toto2` with name of your workspace & change `sumukh` with username in your PC.
+**Note:**__ Change `sim_toto2` with name of your workspace & change `sumukh` with username in your PC.
 
-Run `ros2 launch toto2_description l3.launch.py` to launch Gazebo and RViz.
+3. Run `ros2 launch toto2_description l3.launch.py` to launch Gazebo and RViz.
 
-Run `ros2 run teleop_twist_keyboard teleop_twist_keyboard` to control toto using your keyboard.
+4. Run `ros2 run teleop_twist_keyboard teleop_twist_keyboard` to control toto using your keyboard.
