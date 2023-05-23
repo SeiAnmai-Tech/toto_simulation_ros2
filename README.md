@@ -3,6 +3,7 @@
 1. Install the repository in the `src` folder of your ros2 workspace.
 
 2. Add this lines in your `.bashrc` file:
+
   &nbsp; source /opt/ros/foxy/setup.bash
   
   source ~/sim_toto2/install/setup.bash
