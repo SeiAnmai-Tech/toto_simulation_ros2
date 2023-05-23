@@ -17,7 +17,7 @@ def generate_launch_description():
   robot_localization_file_path = os.path.join(pkg_share, 'config/ekf.yaml') 
   robot_name_in_urdf = 'toto2'
   default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
-  world_file_name = 'toto_world/house.world'
+  world_file_name = 'toto_world/empty_world.world'
   world_path = os.path.join(pkg_share, 'worlds', world_file_name)
   
   # Launch configuration variables specific to simulation
