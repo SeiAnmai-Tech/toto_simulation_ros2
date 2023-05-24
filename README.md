@@ -25,7 +25,7 @@ After adding above lines to `.bashrc`, follow these steps:
 **Gazebo Simulations:**
 
 1. Run `ros2 launch toto2_description l3.launch.py` to launch Gazebo and RViz.
-2. Run `ros2 run teleop_twist_keyboard teleop_twist_keyboard` to control toto using your keyboard.
+2. Run `ros2 run toto2_teleop teleop_keyboard` to control toto using your keyboard.
 
 **SLAM:**
 
@@ -36,7 +36,7 @@ Using SLAM Toolbox (Mapping of TOTO is not correct but preferred option among th
 Install Robot Localization package by running `sudo apt install ros-foxy-robot-localization` & SLAM Toolbox by running `sudo apt install ros-foxy-slam-toolbox`.
 
 1. Run `ros2 launch toto2_description l5.launch.py slam:=True`.
-2. For keyboard control, run `ros2 run teleop_twist_keyboard teleop_twist_keyboard`.
+2. For keyboard control, run `ros2 run toto2_teleop teleop_keyboard`.
 
 Using Cartographer (Publishing LidarScan values but are not getting captured by RViz) -
 
@@ -44,4 +44,4 @@ Install cartographer package by running `sudo apt install ros-foxy-cartographer`
 
 1. Run `ros2 launch toto2_description house.launch.py`.
 2. Run `ros2 launch toto2_cartographer cartographer.launch.py`.
-3. For keyboard control, run `ros2 run teleop_twist_keyboard teleop_twist_keyboard`.
+3. For keyboard control, run `ros2 run toto2_teleop teleop_keyboard`.
