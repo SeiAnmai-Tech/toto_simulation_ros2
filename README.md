@@ -14,6 +14,14 @@
   
 **Note:**__ Change `sim_toto2` with name of your workspace, change `sumukh` with username in your PC and change GAZEBO_MODEL_PATH to place where the repo is cloned.
 
+**Important:**
+
+After adding above lines to `.bashrc`, follow these steps:
+1. Go to terminal, run `gazebo`.
+2. Go to the "Insert" tab at the top of left bar.
+3. From the drop-down menu of your "GAZEBO_MODEL_PATH" directory, add `toto2` and `TOTO House` to the gazebo environment.
+4. Now you can close Gazebo.
+
 **Gazebo Simulations:**
 
 1. Run `ros2 launch toto2_description l3.launch.py` to launch Gazebo and RViz.
