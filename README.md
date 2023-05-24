@@ -12,7 +12,7 @@
    * `source /usr/share/colcon_cd/function/colcon_cd.sh`
    * `export _colcon_cd_root=~/sim_toto2`
   
-**Note:**__ Change `sim_toto2` with name of your workspace & change `sumukh` with username in your PC.
+**Note:**__ Change `sim_toto2` with name of your workspace, change `sumukh` with username in your PC and change GAZEBO_MODEL_PATH to place where the repo is cloned.
 
 **Gazebo Simulations:**
 
