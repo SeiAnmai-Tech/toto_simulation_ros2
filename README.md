@@ -23,13 +23,17 @@
 
 There are **2** options:
 
-Using Cartographer (Publishing LidarScan values but are not getting captured by RViz) - 
+Using Cartographer (Publishing LidarScan values but are not getting captured by RViz) -
+
+To install cartographer package, run `sudo apt install ros-foxy-cartographer`.
 
 1. Run `ros2 launch toto2_description house.launch.py`.
 2. Run `ros2 launch toto2_cartographer cartographer.launch.py`.
 3. For keyboard control, run `ros2 run teleop_twist_keyboard teleop_twist_keyboard`.
 
 Using SLAM Toolbox (Mapping of TOTO is not correct) - 
+
+To install SLAM Toolbox, run `sudo apt install ros-foxy-slam-toolbox`.
 
 1. Run `ros2 launch toto2_description l5.launch.py slam:=True`.
 2. For keyboard control, run `ros2 run teleop_twist_keyboard teleop_twist_keyboard`.
