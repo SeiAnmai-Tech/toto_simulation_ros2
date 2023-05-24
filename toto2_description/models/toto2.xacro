@@ -123,6 +123,16 @@
   <link name="camera_1">
   </link>
 
+  <link name="imu_link">
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+      <origin xyz="0.0 0.0 0.17" rpy="0 0 0" />
+      <axis xyz="0.0 0.0 1.0" />
+    </joint>
+
   <joint name="camera_joint_1" type="fixed">
     <parent link="base_link"/>
     <child link="camera_link1_1"/>

@@ -101,10 +101,10 @@
         </geometry>
       </collision>
 
-      <sensor name="lidar" type="ray">
+      <sensor name="hls_lfcd_lds" type="ray">
         <pose>0.1 -0.0 0.21 0 0 0</pose>
         <always_on>true</always_on>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <update_rate>5</update_rate>
         <ray>
           <scan>
@@ -126,12 +126,69 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
-        <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+        <plugin name="toto2_scan" filename="libgazebo_ros_ray_sensor.so">
           <ros>
             <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
           <frame_name>lidar_1</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+
+    <!-- **************************** IMU ********************************* -->
+
+    <link name="imu_link">
+      <sensor name="toto2_imu" type="imu">
+        <always_on>true</always_on>
+        <update_rate>200</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <plugin name="toto2_imu" filename="libgazebo_ros_imu_sensor.so">
+          <ros>
+            <!-- <namespace>/tb3</namespace> -->
+            <remapping>~/out:=imu</remapping>
+          </ros>
         </plugin>
       </sensor>
     </link>
@@ -367,6 +424,15 @@
       <pose>0.1 0.0 0.17 0 0 0</pose>
     </joint>
 
+    <joint name="imu_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>imu_link</child>
+      <pose>0.0 0.0 0.17 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
     <joint name="camera_joint_1" type="fixed">
       <parent>base_link</parent>
       <child>camera_link1_1</child>
@@ -387,7 +453,7 @@
 
 
     <!-- *********************** WHEEL ODOMETRY ***************************    -->
-    <plugin name="basic_mobile_bot_diff_drive" filename="libgazebo_ros_diff_drive.so">
+    <plugin name="toto2_diff_drive" filename="libgazebo_ros_diff_drive.so">
 
       <update_rate>30</update_rate>
 
@@ -412,7 +478,7 @@
 
       <!-- When true, publish coordinate transform from odom to base_footprint -->
       <!-- I usually use the robot_localization package to publish this transform -->
-      <publish_odom_tf>false</publish_odom_tf>
+      <publish_odom_tf>true</publish_odom_tf>
 
       <!-- When true, publish coordinate transform from base_link to the wheels -->
       <!-- The robot_state_publisher package is often used to publish this transform -->
@@ -426,15 +492,15 @@
       <odometry_source>0</odometry_source>
 
       <!-- Change the ROS topic we will publish the odometry data to -->
-      <ros>
+      <!-- <ros>
         <remapping>odom:=wheel/odometry</remapping>
-      </ros>
+      </ros> -->
 
     </plugin>
 
     <!-- *********************** JOINT STATE PUBLISHER *********************   -->
 
-    <plugin name="basic_mobile_bot_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
+    <plugin name="toto_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
       <ros>
         <remapping>~/out:=joint_states</remapping>
       </ros>
