@@ -3,6 +3,10 @@
   <model name="toto2">
     <static>false</static>
 
+    <!-- **************************** BASE_FOOTPRINT ********************************* -->
+
+    <link name="base_footprint"/>
+
     <!-- **************************** BASE_LINK ********************************* -->
 
     <link name="base_link">
@@ -36,7 +40,7 @@
       </visual>
 
       <collision name="base_collision">
-        <pose>0 0 0 0 0 -1.57079633</pose>
+        <pose>0 0 0.001 0 0 -1.57079633</pose>
         <geometry>
           <mesh>
             <uri>model://toto2/meshes/base_link.stl</uri>
@@ -48,8 +52,8 @@
           <!-- Define the friction properties -->
           <friction>
             <ode>
-              <mu>0</mu>           <!-- Coefficient of friction -->
-              <mu2>0</mu2>         <!-- Second coefficient of friction -->
+              <mu>0.001</mu>           <!-- Coefficient of friction -->
+              <mu2>0.001</mu2>         <!-- Second coefficient of friction -->
               <fdir1>1 0 0</fdir1>   <!-- Direction of the first friction axis -->
               <slip1>0.0</slip1>     <!-- Slip along the first friction axis -->
               <slip2>0.0</slip2>     <!-- Slip along the second friction axis -->
@@ -101,10 +105,10 @@
         </geometry>
       </collision>
 
-      <sensor name="lidar" type="ray">
-        <pose>0.1 -0.0 0.21 0 0 0</pose>
+      <sensor name="hls_lfcd_lds" type="ray">
+        <pose>0.0 -0.0 0.21 0 0 0</pose>
         <always_on>true</always_on>
-        <visualize>false</visualize>
+        <visualize>true</visualize>
         <update_rate>5</update_rate>
         <ray>
           <scan>
@@ -116,8 +120,8 @@
             </horizontal>
           </scan>
           <range>
-            <min>0.120000</min>
-            <max>3.5</max>
+            <min>0.250000</min>
+            <max>8</max>
             <resolution>0.015000</resolution>
           </range>
           <noise>
@@ -126,12 +130,69 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
-        <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+        <plugin name="toto2_scan" filename="libgazebo_ros_ray_sensor.so">
           <ros>
             <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
           <frame_name>lidar_1</frame_name>
+        </plugin>
+      </sensor>
+    </link>
+
+    <!-- **************************** IMU ********************************* -->
+
+    <link name="imu_link">
+      <sensor name="toto2_imu" type="imu">
+        <always_on>true</always_on>
+        <update_rate>200</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <plugin name="toto2_imu" filename="libgazebo_ros_imu_sensor.so">
+          <ros>
+            <!-- <namespace>/tb3</namespace> -->
+            <remapping>~/out:=imu</remapping>
+          </ros>
         </plugin>
       </sensor>
     </link>
@@ -242,7 +303,7 @@
           <iyz>0.0</iyz>
           <ixz>0.0</ixz>
         </inertia>
-        <mass>0.3</mass>
+        <mass>1</mass>
       </inertial>
 
       <visual name="right_wheel_visual">
@@ -274,8 +335,8 @@
           <!-- Define the friction properties -->
           <friction>
             <ode>
-              <mu>2</mu>           <!-- Coefficient of friction -->
-              <mu2>10</mu2>         <!-- Second coefficient of friction -->
+              <mu>10000</mu>           <!-- Coefficient of friction -->
+              <mu2>1000000</mu2>         <!-- Second coefficient of friction -->
               <fdir1>1 0 0</fdir1>   <!-- Direction of the first friction axis -->
               <slip1>0.0</slip1>     <!-- Slip along the first friction axis -->
               <slip2>0.0</slip2>     <!-- Slip along the second friction axis -->
@@ -298,7 +359,7 @@
           <iyz>0.0</iyz>
           <ixz>0.0</ixz>
         </inertia>
-        <mass>0.3</mass>
+        <mass>1</mass>
       </inertial>
 
       <visual name="left_wheel_visual">
@@ -330,8 +391,8 @@
           <!-- Define the friction properties -->
           <friction>
             <ode>
-              <mu>2</mu>           <!-- Coefficient of friction -->
-              <mu2>10</mu2>         <!-- Second coefficient of friction -->
+              <mu>10000</mu>           <!-- Coefficient of friction -->
+              <mu2>1000000</mu2>         <!-- Second coefficient of friction -->
               <fdir1>1 0 0</fdir1>   <!-- Direction of the first friction axis -->
               <slip1>0.0</slip1>     <!-- Slip along the first friction axis -->
               <slip2>0.0</slip2>     <!-- Slip along the second friction axis -->
@@ -367,6 +428,24 @@
       <pose>0.1 0.0 0.17 0 0 0</pose>
     </joint>
 
+    <joint name="base" type="fixed">
+      <parent>base_footprint</parent>
+      <child>base_link</child>
+      <pose>0.0 0.0 0.1 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <joint name="imu_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>imu_link</child>
+      <pose>0.0 0.0 0.17 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
     <joint name="camera_joint_1" type="fixed">
       <parent>base_link</parent>
       <child>camera_link1_1</child>
@@ -387,7 +466,7 @@
 
 
     <!-- *********************** WHEEL ODOMETRY ***************************    -->
-    <plugin name="basic_mobile_bot_diff_drive" filename="libgazebo_ros_diff_drive.so">
+    <plugin name="toto2_diff_drive" filename="libgazebo_ros_diff_drive.so">
 
       <update_rate>30</update_rate>
 
@@ -412,7 +491,7 @@
 
       <!-- When true, publish coordinate transform from odom to base_footprint -->
       <!-- I usually use the robot_localization package to publish this transform -->
-      <publish_odom_tf>false</publish_odom_tf>
+      <publish_odom_tf>true</publish_odom_tf>
 
       <!-- When true, publish coordinate transform from base_link to the wheels -->
       <!-- The robot_state_publisher package is often used to publish this transform -->
@@ -420,21 +499,21 @@
 
       <odometry_topic>odom</odometry_topic>
       <odometry_frame>odom</odometry_frame>
-      <robot_base_frame>base_link</robot_base_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
 
       <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
       <odometry_source>0</odometry_source>
 
       <!-- Change the ROS topic we will publish the odometry data to -->
-      <ros>
+      <!-- <ros>
         <remapping>odom:=wheel/odometry</remapping>
-      </ros>
+      </ros> -->
 
     </plugin>
 
     <!-- *********************** JOINT STATE PUBLISHER *********************   -->
 
-    <plugin name="basic_mobile_bot_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
+    <plugin name="toto_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
       <ros>
         <remapping>~/out:=joint_states</remapping>
       </ros>
