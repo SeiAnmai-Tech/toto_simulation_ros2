@@ -17,8 +17,8 @@ setup(
     zip_safe=True,
     author='Darby Lim',
     author_email='thlim@robotis.com',
-    maintainer='Will Son',
-    maintainer_email='willson@robotis.com',
+    maintainer='Sumukh Porwal',
+    maintainer_email='sumukh.porwal@gmail.com',
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
@@ -27,7 +27,7 @@ setup(
         'Topic :: Software Development',
     ],
     description=(
-        'Teleoperation node using keyboard for TurtleBot3.'
+        'Teleoperation node using keyboard for TOTO.'
     ),
     license='Apache License, Version 2.0',
     tests_require=['pytest'],

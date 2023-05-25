@@ -48,11 +48,11 @@ else:
     import termios
     import tty
 
-MAX_LIN_VEL = 0.17
-MAX_ANG_VEL = 0.15
+MAX_LIN_VEL = 0.2
+MAX_ANG_VEL = 0.4
 
 LIN_VEL_STEP_SIZE = 0.01
-ANG_VEL_STEP_SIZE = 0.02
+ANG_VEL_STEP_SIZE = 0.025
 
 msg = """
 Control Your TOTO!
