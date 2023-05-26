@@ -1,5 +1,11 @@
 # toto_simulation_ros2
 
+Run the following commands  in terminal to install and setup ROS2 Foxy:
+1. `wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros2_foxy.sh`
+2. `sudo chmod 755 ./install_ros2_foxy.sh`
+3. `bash ./install_ros2_foxy.sh`
+**Note:** After this a workspace named `colcon_ws` will be created where you can install TOTO files or you can create your own workspace.
+
 1. Install the repository in the `src` folder of your ros2 workspace.
 
 2. Add this lines in your `.bashrc` file:
@@ -44,6 +50,8 @@ Install Robot Localization package by running `sudo apt install ros-foxy-robot-l
 3. Change `yaml_filename: "house.yaml"` to `yaml_filename: "{name_of_your_map}.yaml"` in **/toto2_navigation/params/toto2_nav2_params.yaml**.
 
 To launch the navigation stack:
+
+Install Nvigation Stack package by running `sudo apt install ros-foxy-navigation2` & `sudo apt install ros-foxy-nav2-bringup`.
 
 1. Run `ros2 launch toto2_description nav2.launch.py`.
 2. Click the **2D Pose Estimate button** in the RViz2 menu. (Position of the robot will be near outside wall and below main gate of the house).
