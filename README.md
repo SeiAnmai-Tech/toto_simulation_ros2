@@ -4,21 +4,21 @@ Run the following commands  in terminal to install and setup ROS2 Foxy:
 1. `wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros2_foxy.sh`
 2. `sudo chmod 755 ./install_ros2_foxy.sh`
 3. `bash ./install_ros2_foxy.sh`
-**Note:** After this a workspace named `colcon_ws` will be created where you can install TOTO files or you can create your own workspace.
 
-1. Install the repository in the `src` folder of your ros2 workspace.
+**Note:** After this a workspace named `colcon_ws` will be created where you can install TOTO files or you can create your own ros2 workspace.
 
-2. Add this lines in your `.bashrc` file:
+4. Install the repository in the `src` folder of your ros2 workspace.
 
-   * `source /opt/ros/foxy/setup.bash`
-   * `source ~/sim_toto2/install/setup.bash`
+5. Add this lines in your `.bashrc` file:
+
+   * `source ~/{name of ros2 workspace}/install/setup.bash`
    * `export ROS_DOMAIN_ID=0` 
-   * `export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sumukh/sim_toto2/src/toto2_description/models/`
+   * `export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sumukh/{name of ros2 workspace}/src/toto_simulation_ros2/toto2_description/models/`
    * `source /usr/share/gazebo/setup.sh`
    * `source /usr/share/colcon_cd/function/colcon_cd.sh`
-   * `export _colcon_cd_root=~/sim_toto2`
+   * `export _colcon_cd_root=~/{name of ros2 workspace}`
   
-**Note:** Change `sim_toto2` with name of your workspace, change `sumukh` with username in your PC and change GAZEBO_MODEL_PATH to place where the repo is cloned.
+**Note:** Change `sumukh` with username in your PC and change GAZEBO_MODEL_PATH to place where the repo is cloned.
 
 **Important:**
 
@@ -58,6 +58,14 @@ Install Nvigation Stack package by running `sudo apt install ros-foxy-navigation
 3. Click on the map where the robot is located in gazebo and drag the large green arrow toward the direction where the robot is facing.
 4. After this, click the **Navigation2 Goal** button in the RViz2 menu.
 5. Click on the map to set the destination of the robot and drag the green arrow toward the direction where the robot will be facing.
+
+Waypoint Navigation:
+
+1. Run `ros2 launch toto2_description nav2.launch.py`.
+2. Click the **2D Pose Estimate** button in the RViz2 menu. (Position of the robot will be near outside wall and below main gate of the house).
+3. Now click the **Waypoint mode** button in the bottom left corner of RViz. Clicking this button puts the system in waypoint follower mode.
+4. Click **Navigation2 Goal** button, and click on areas of the map where you would like your robot to go (i.e. select your waypoints). Select as many waypoints as you want.
+5. When you’re ready for the robot to follow the waypoints, click the **Start Navigation** button in the bottom left corner of RViz.
 
 **Note:** 
 * This green arrow is a marker that can specify the destination of the robot.

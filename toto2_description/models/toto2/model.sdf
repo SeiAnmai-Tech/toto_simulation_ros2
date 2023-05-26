@@ -40,7 +40,7 @@
       </visual>
 
       <collision name="base_collision">
-        <pose>0 0 0.001 0 0 -1.57079633</pose>
+        <pose>0 0 0.0005 0 0 -1.57079633</pose>
         <geometry>
           <mesh>
             <uri>model://toto2/meshes/base_link.stl</uri>
@@ -108,7 +108,7 @@
       <sensor name="hls_lfcd_lds" type="ray">
         <pose>0.0 -0.0 0.21 0 0 0</pose>
         <always_on>true</always_on>
-        <visualize>true</visualize>
+        <visualize>false</visualize>
         <update_rate>5</update_rate>
         <ray>
           <scan>
