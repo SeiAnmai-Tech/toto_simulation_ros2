@@ -55,22 +55,3 @@ To launch the navigation stack:
 * This green arrow is a marker that can specify the destination of the robot.
 * The root of the arrow is x, y coordinate of the destination, and the angle θ is determined by the orientation of the arrow.
 * As soon as x, y, θ are set, TOTO will start moving to the destination immediately.
-=======
-  
-   * `source ~/sim_toto2/install/setup.bash`
-  
-   * `export ROS_DOMAIN_ID=0` 
-  
-   * `export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sumukh/sim_toto2/src/toto2_description/models/`
-  
-   * `source /usr/share/gazebo/setup.sh`
-  
-   * `source /usr/share/colcon_cd/function/colcon_cd.sh`
-  
-   * `export _colcon_cd_root=~/sim_toto2`
-  
-**Note:**__ Change `sim_toto2` with name of your workspace & change `sumukh` with username in your PC.
-
-3. Run `ros2 launch toto2_description l3.launch.py` to launch Gazebo and RViz.
-
-4. Run `ros2 run teleop_twist_keyboard teleop_twist_keyboard` to control toto using your keyboard.
