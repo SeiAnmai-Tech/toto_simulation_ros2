@@ -4,7 +4,7 @@ Run the following commands  in terminal to install and setup ROS2 Foxy:
 1. `wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros2_foxy.sh`
 2. `sudo chmod 755 ./install_ros2_foxy.sh`
 3. `bash ./install_ros2_foxy.sh`
-4. `sudo apt-get install ros-foxy-gazebo-ros`
+4. `sudo apt-get install ros-foxy-gazebo-ros` & `sudo apt-get install ros-foxy-gazebo-ros-pkgs`
 5. `sudo apt-get install ros-foxy-xacro`
 
 **Note:** After this a workspace named `colcon_ws` will be created where you can install TOTO files or you can create your own ros2 workspace.
