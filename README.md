@@ -20,12 +20,12 @@ Now follow these steps:
 **Gazebo Simulations:**
 
 1. Run `ros2 launch toto2_description simulation.launch.py` to launch Gazebo and RViz.
-2. Run `ros2 run toto2_teleop teleop_keyboard` to control TOTO using your keyboard.
+2. Run `ros2 run toto2_teleop teleop_keyboard` to control TOTO using your keyboard **OR** run 'ros2 launch toto2_description joystick.launch.py' to control using PS4 controller.
 
 **SLAM:** 
 
 1. Run `ros2 launch toto2_description nav2.launch.py slam:=True`.
-2. For keyboard control, run `ros2 run toto2_teleop teleop_keyboard`.
+2. For keyboard control, run `ros2 run toto2_teleop teleop_keyboard` **OR** run 'ros2 launch toto2_description joystick.launch.py' to control using PS4 controller.
 3. To save your map, run to `cd ros2_ws/src/toto_simulation_ros2/toto2_description/maps/` and then to save map run `ros2 run nav2_map_server map_saver_cli -f ~/{name_of_your_map}`
 
 **Navigation:**

@@ -2,6 +2,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
+from launch.actions import ExecuteProcess
 
 import os
 from ament_index_python.packages import get_package_share_directory
@@ -22,8 +23,13 @@ def generate_launch_description():
             executable='teleop_node',
             name='teleop_node',
             parameters=[joy_params, {'use_sim_time': use_sim_time}],
-            remappings=[('/cmd_vel','/cmd_vel_joy')]
+            remappings=[('/cmd_vel','/cmd_vel')]
          )
+    
+    print_script = ExecuteProcess(
+        cmd=['bash', '-c', 'echo "Control Your TOTO!"; echo "---------------------------"; echo "Moving around:"; echo ""; echo "Press L1 and use left joystick to control TOTO."; echo ""; echo "CTRL-C to quit"'],
+        output='screen'
+    )
 
     # twist_stamper = Node(
     #         package='twist_stamper',
