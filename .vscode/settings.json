@@ -1,0 +1,4 @@
+{
+    "ros.distro": "humble",
+    "cmake.sourceDirectory": "/home/sumukh/ros2_ws/src/toto_simulation_ros2/toto2_description"
+}

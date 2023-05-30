@@ -16,7 +16,7 @@ set(_toto2_navigation_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT toto2_navigation_FIND_QUIETLY)
-  message(STATUS "Found toto2_navigation: 0.4.7 (${toto2_navigation_DIR})")
+  message(STATUS "Found toto2_navigation: 1.1.6 (${toto2_navigation_DIR})")
 endif()
 
 # warn when using a deprecated package
