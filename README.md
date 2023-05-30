@@ -1,32 +1,21 @@
 # toto_simulation_ros2
 
-Run the following commands  in terminal to install and setup ROS2 Foxy:
-1. `wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros2_foxy.sh`
-2. `sudo chmod 755 ./install_ros2_foxy.sh`
-3. `bash ./install_ros2_foxy.sh`
-
-**Note:** After this a workspace named `colcon_ws` will be created where you can install TOTO files or you can create your own ros2 workspace.
-
-4. Install the repository in the `src` folder of your ros2 workspace.
-
-5. Add this lines in your `.bashrc` file:
-
-   * `source ~/{name of ros2 workspace}/install/setup.bash`
-   * `export ROS_DOMAIN_ID=0` 
-   * `export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/home/sumukh/{name of ros2 workspace}/src/toto_simulation_ros2/toto2_description/models/`
-   * `source /usr/share/gazebo/setup.sh`
-   * `source /usr/share/colcon_cd/function/colcon_cd.sh`
-   * `export _colcon_cd_root=~/{name of ros2 workspace}`
-  
-**Note:** Change `sumukh` with username in your PC and change GAZEBO_MODEL_PATH to place where the repo is cloned.
+Go to terminal and run:
+1. `sudo apt install git -y`
+2. `mkdir -p ~/ros2_ws/src`
+3. `cd ~/ros2_ws/src`
+4. `git clone <SSH_Key_of_github_repo> -b humble`
+5. `cd toto_simulation_ros2/`
+6. `chmod +x install.sh`
+7. `./install_dependencies.sh`
 
 **Important:**
 
-After adding above lines to `.bashrc`, follow these steps:
-1. Go to terminal, run `gazebo`.
+Now follow these steps:
+1. Open a new terminal and run `gazebo`.
 2. Go to the "Insert" tab at the top of left bar.
 3. From the drop-down menu of your "GAZEBO_MODEL_PATH" directory, add `toto2` and `TOTO House` to the gazebo environment.
-4. Now you can close Gazebo.
+4. After this, you can close Gazebo.
 
 **Gazebo Simulations:**
 
@@ -35,11 +24,9 @@ After adding above lines to `.bashrc`, follow these steps:
 
 **SLAM:** 
 
-Install Robot Localization package by running `sudo apt install ros-foxy-robot-localization` & SLAM Toolbox by running `sudo apt install ros-foxy-slam-toolbox` in your terminal.
-
 1. Run `ros2 launch toto2_description nav2.launch.py slam:=True`.
 2. For keyboard control, run `ros2 run toto2_teleop teleop_keyboard`.
-3. To save your map, run to `cd {your_workspace}/src/toto_simulation_ros2/toto2_description/maps/` and then to save map run `ros2 run nav2_map_server map_saver_cli -f ~/{name_of_your_map}`
+3. To save your map, run to `cd ros2_ws/src/toto_simulation_ros2/toto2_description/maps/` and then to save map run `ros2 run nav2_map_server map_saver_cli -f ~/{name_of_your_map}`
 
 **Navigation:**
 
@@ -50,8 +37,6 @@ Install Robot Localization package by running `sudo apt install ros-foxy-robot-l
 3. Change `yaml_filename: "house.yaml"` to `yaml_filename: "{name_of_your_map}.yaml"` in **/toto2_navigation/params/toto2_nav2_params.yaml**.
 
 To launch the navigation stack:
-
-Install Nvigation Stack package by running `sudo apt install ros-foxy-navigation2` & `sudo apt install ros-foxy-nav2-bringup`.
 
 1. Run `ros2 launch toto2_description nav2.launch.py`.
 2. Click the **2D Pose Estimate button** in the RViz2 menu. (Position of the robot will be near outside wall and below main gate of the house).
