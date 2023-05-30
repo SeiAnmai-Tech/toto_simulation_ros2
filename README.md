@@ -7,7 +7,7 @@ Go to terminal and run:
 4. `git clone <SSH_Key_of_github_repo> -b humble`
 5. `cd toto_simulation_ros2/`
 6. `chmod +x install.sh`
-7. `./install_dependencies.sh`
+7. `./install.sh`
 
 **Important:**
 
