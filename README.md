@@ -4,7 +4,7 @@ Go to terminal and run:
 1. `sudo apt install git -y`
 2. `mkdir -p ~/ros2_ws/src`
 3. `cd ~/ros2_ws/src`
-4. `git clone <SSH_Key_of_github_repo> -b humble`
+4. `git clone git@github.com:SeiAnmai-Tech/toto_simulation_ros2.git -b humble`
 5. `cd toto_simulation_ros2/`
 6. `chmod +x install.sh`
 7. `./install.sh`
@@ -16,10 +16,11 @@ Now follow these steps:
 2. Go to the "Insert" tab at the top of left bar.
 3. From the drop-down menu of your "GAZEBO_MODEL_PATH" directory, add `toto2` and `TOTO House` to the gazebo environment.
 4. After this, you can close Gazebo.
+5. Open a new terminal and go to `ros2_ws` and run `colcon build`.
 
 **Gazebo Simulations:**
 
-1. Run `ros2 launch toto2_description simulation.launch.py` to launch Gazebo and RViz.
+1. Open a new terminal, and run `ros2 launch toto2_description simulation.launch.py` to launch Gazebo and RViz.
 2. Run `ros2 run toto2_teleop teleop_keyboard` to control TOTO using your keyboard **OR** run `ros2 launch toto2_description joystick.launch.py` to control using PS4 controller.
 
 **SLAM:** 
