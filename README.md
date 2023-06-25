@@ -4,7 +4,7 @@ Go to terminal and run:
 1. `sudo apt install git -y`
 2. `mkdir -p ~/ros2_ws/src`
 3. `cd ~/ros2_ws/src`
-4. `git clone <SSH_Key_of_github_repo> -b humble`
+4. `git clone <SSH_Key_of_github_repo> -b srikrishna-humble`
 5. `cd toto_simulation_ros2/`
 6. `chmod +x install.sh`
 7. `./install.sh`
