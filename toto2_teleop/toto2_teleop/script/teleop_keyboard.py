@@ -38,6 +38,7 @@ import os
 import select
 import sys
 import rclpy
+from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 from rclpy.qos import QoSProfile
@@ -61,9 +62,6 @@ Moving around:
         w
    a    s    d
         x
-
-w/x : increase/decrease linear velocity 
-a/d : increase/decrease angular velocity 
 
 space key, s : force stop
 
@@ -142,6 +140,7 @@ def main():
     target_angular_velocity = 0.0
     control_linear_velocity = 0.0
     control_angular_velocity = 0.0
+    print(Node.get_parameters_by_prefix(Node, '/controller_server'))
 
     try:
         print(msg)
