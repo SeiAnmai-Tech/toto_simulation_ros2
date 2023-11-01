@@ -17,6 +17,11 @@ Now follow these steps:
 3. From the drop-down menu of your "GAZEBO_MODEL_PATH" directory, add `toto2` and `TOTO House` to the gazebo environment.
 4. After this, you can close Gazebo.
 
+If the gazebo fails after trying to load in TOTO House, do the following.
+folow the instructions in [this](https://medium.com/@nilutpolk/setting-up-turtlebot3-simulation-in-ros-2-humble-hawksbill-70a6fcdaf5de):
+run the turtlebot world launch file. It will take some time to download it will still be a black screen wait for it (some 10-15 minutes max). 
+then start from instruction 1 above and it will work.
+
 **Gazebo Simulations:**
 
 1. Run `ros2 launch toto2_description simulation.launch.py` to launch Gazebo and RViz.
