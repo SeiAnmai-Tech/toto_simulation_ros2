@@ -24,7 +24,7 @@ then start from instruction 1 above and it will work.
 
 **Gazebo Simulations:**
 
-1. Run `ros2 launch toto2_description simulation.launch.py` to launch Gazebo and RViz.
+1. Run `ros2 launch toto2_description simulation.launch.py` to launch Gazebo and RViz. (If after running previous command Models are not visible in gazebo add `export GAZEBO_MODEL_PATH=/path/to/your/models:$GAZEBO_MODEL_PATH` in bashrc file or run in terminal. Replace "/path/to/your/models" with the actual path where your Gazebo models are stored.)
 2. Run `ros2 run toto2_teleop teleop_keyboard` to control TOTO using your keyboard **OR** run `ros2 launch toto2_description joystick.launch.py` to control using PS4 controller.
 
 **SLAM:** 
