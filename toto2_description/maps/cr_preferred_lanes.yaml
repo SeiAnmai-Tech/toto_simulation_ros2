@@ -1,0 +1,3 @@
+preferred_lanes:
+- description: Example lane for reference
+  id: 1
