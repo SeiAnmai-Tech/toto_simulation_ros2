@@ -43,7 +43,7 @@ then start from instruction 1 above and it will work.
 
 To launch the navigation stack:
 
-1. Run `ros2 launch toto2_description nav2.launch.py`.
+1. Run `ros2 launch toto2_description cr.launch.py`.
 2. Click the **2D Pose Estimate button** in the RViz2 menu. (Position of the robot will be near outside wall and below main gate of the house).
 3. Click on the map where the robot is located in gazebo and drag the large green arrow toward the direction where the robot is facing.
 4. After this, click the **Navigation2 Goal** button in the RViz2 menu.
