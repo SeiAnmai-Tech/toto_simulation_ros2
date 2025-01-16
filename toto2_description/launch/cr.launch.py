@@ -65,7 +65,7 @@ def generate_launch_description():
 
     # Start the keep_out.py script to get points from the user
     execute_keep_out_script_cmd = ExecuteProcess(
-        cmd=['gnome-terminal', '--','python3', '/home/krushna/st/src/toto_simulation_ros2/toto2_description/scripts/cr.py'],
+        cmd=['gnome-terminal', '--','python3', '/home/krushna/st/src/toto_simulation_ros2/toto2_description/scripts/script.py'],
         output='screen',
         shell=True
     )

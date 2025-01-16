@@ -8,6 +8,7 @@ from std_srvs.srv import Empty
 import os
 from datetime import datetime
 import shutil
+import time
 
 class MapUpdater(Node):
     def __init__(self):
@@ -15,18 +16,24 @@ class MapUpdater(Node):
 
         # Service clients
         self.load_map_client = self.create_client(LoadMap, '/map_server/load_map')
-        self.clear_costmaps_client = self.create_client(Empty, '/local_costmap/clear')
+        self.clear_costmaps_client_global = self.create_client(Empty, '/global_costmap/clear_entirely_global_costmap')
+        self.clear_costmaps_client_local = self.create_client(Empty, '/local_costmap/clear_entirely_local_costmap')
 
         # Wait for the map server to be available
         while not self.load_map_client.wait_for_service(timeout_sec=5.0):
             self.get_logger().info('Waiting for the map server to be available...')
         self.get_logger().info('Map server is available.')
 
-        # Check for the clear costmap service
-        if not self.clear_costmaps_client.wait_for_service(timeout_sec=5.0):
-            self.get_logger().warning("Clear costmaps service unavailable, proceeding without it.")
+        # Check for the clear costmap services
+        if not self.clear_costmaps_client_global.wait_for_service(timeout_sec=10.0):
+            self.get_logger().warning("Global costmap clear service unavailable, proceeding without it.")
         else:
-            self.get_logger().info('Clear costmap service is available.')
+            self.get_logger().info('Global costmap clear service is available.')
+
+        if not self.clear_costmaps_client_local.wait_for_service(timeout_sec=10.0):
+            self.get_logger().warning("Local costmap clear service unavailable, proceeding without it.")
+        else:
+            self.get_logger().info('Local costmap clear service is available.')
 
         # Define file paths
         self.yaml_file_path = "/home/krushna/st/src/toto_simulation_ros2/toto2_description/maps/preffed_lanes.yaml"
@@ -46,8 +53,9 @@ class MapUpdater(Node):
         # Update the PGM file
         self.update_pgm_file()
 
-        # Clear previous map and reload the new one
+        # Clear previous costmaps and reload the map
         self.clear_costmaps()
+        time.sleep(1)  # Small delay to ensure costmaps are cleared before reloading the map
         self.reload_map()
 
     def backup_pgm_file(self):
@@ -149,18 +157,25 @@ class MapUpdater(Node):
         print(f"Preferred lanes saved to {preferred_lanes_path}")
 
     def clear_costmaps(self):
-        """Clears the existing costmaps to ensure no collisions."""
-        self.get_logger().info("Clearing costmaps...")
-        if self.clear_costmaps_client.wait_for_service(timeout_sec=5.0):
+        """Clears both global and local costmaps."""
+        self.get_logger().info("Clearing global costmap...")
+        self.call_service(self.clear_costmaps_client_global)
+
+        self.get_logger().info("Clearing local costmap...")
+        self.call_service(self.clear_costmaps_client_local)
+
+    def call_service(self, client):
+        """Calls a service to clear costmaps."""
+        if client.wait_for_service(timeout_sec=5.0):
             request = Empty.Request()
-            future = self.clear_costmaps_client.call_async(request)
+            future = client.call_async(request)
             rclpy.spin_until_future_complete(self, future)
             if future.result() is not None:
-                self.get_logger().info("Costmaps cleared successfully.")
+                self.get_logger().info("Costmap cleared successfully.")
             else:
-                self.get_logger().error(f"Failed to clear costmaps: {future.exception()}")
+                self.get_logger().error(f"Failed to clear costmap: {future.exception()}")
         else:
-            self.get_logger().warning("Clear costmaps service unavailable, skipping...")
+            self.get_logger().warning("Costmap clearing service unavailable.")
 
     def reload_map(self):
         """Reloads the map using the Nav2 LoadMap service."""
